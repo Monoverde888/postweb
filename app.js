@@ -25,7 +25,7 @@ app.post('/submit-form', async (req, res) => {
 
     try {
         // Post data to the specified destination server
-        const response = await axios.post('http://127.0.0.1:44275/query', { context });
+        const response = await axios.post('http://127.0.0.1:44725/query', { context });
 
         // Extract the response data, assuming the key is 'response'
         const responseData = response.data.response || 'No response key found';
