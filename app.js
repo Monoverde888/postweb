@@ -19,6 +19,7 @@ app.post('/submit-form', async (req, res) => {
     const { context } = req.body;
 
     if (!context) {
+        console.error('No context provided');
         return res.status(400).send('No context provided');
     }
 
@@ -28,6 +29,9 @@ app.post('/submit-form', async (req, res) => {
 
         // Extract the response data, assuming the key is 'response'
         const responseData = response.data.response || 'No response key found';
+        
+        // Log the successful response
+        console.log('Response received:', responseData);
         
         // Render the formatted response HTML
         res.send(`
@@ -51,6 +55,9 @@ app.post('/submit-form', async (req, res) => {
             </html>
         `);
     } catch (error) {
+        // Log the error in the console
+        console.error('Error posting data:', error.message);
+
         const errorMessage = error.response ? error.response.data : 'Failed to post data to the destination server';
         res.status(error.response ? error.response.status : 500).send(`
             <html>
