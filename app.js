@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 const app = express();
-const port = 3000;
+const port = 42303;
 
 // Middleware to parse URL-encoded form data
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -24,7 +24,7 @@ app.post('/submit-form', async (req, res) => {
 
     try {
         // Post data to the specified destination server
-        const response = await axios.post('https://cougar-flying-jennet.ngrok-free.app/query', { context });
+        const response = await axios.post('http://127.0.0.1:44275/query', { context });
 
         // Extract the response data, assuming the key is 'response'
         const responseData = response.data.response || 'No response key found';
